@@ -1,5 +1,4 @@
 import fastify, { FastifyInstance } from "fastify";
-import SteamAPI, { OwnedGame } from 'type-steamapi';
 import { PrismaClient, } from '@prisma/client';
 
 const prisma: PrismaClient = new PrismaClient();

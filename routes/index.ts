@@ -14,10 +14,6 @@ export function registerRoutes(fastify: FastifyInstance) {
         itemsController.index(req, res)
     });
 
-    fastify.get("/", (req: any, res: any) => {
-        itemsController.index(req, res);
-    });
-
     fastify.post("/hms/statistics", (req: any, res: any) => {
         itemsController.recording_statistics(req, res);
     });

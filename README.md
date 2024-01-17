@@ -1,6 +1,6 @@
 create .env 
 
-DATABASE_URL="mysql://root:secret@localhost:3306/name"
+DATABASE_URL="mysql://root:secret@localhost:3306/name
 
 npm install 
 

@@ -1,0 +1,25 @@
+<%- include('particles/header.ejs') %>
+<%- include('particles/navigation.ejs') %>
+<div>
+    <div>
+
+      <form action="/hms/statistics" method="post">
+        <div>
+          <label for="temp">
+          </label>
+          <input type="text" id="temp" name="temp" required autocomplete="off" placeholder="temp" />
+        </div>
+
+        <div>
+          <label for="pulse">
+          </label>
+          <input type="text" id="pulse" name="pulse" required autocomplete="off" placeholder="pulse" />
+        </div>
+
+        <button type="submit" value="Отправить">Отправить</button>
+      </form>
+      
+    </div>
+</div>
+
+<%- include('particles/footer.ejs') %>

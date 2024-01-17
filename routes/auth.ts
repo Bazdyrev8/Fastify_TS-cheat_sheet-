@@ -1,33 +1,11 @@
 import fastify, { FastifyInstance } from "fastify";
-import { ItemsController } from "../controllers/ItemsController";
+import { AuthController } from "../controllers/AuthController";
 import { request } from "https";
 import { Interface } from "readline";
 
-import { AuthController } from "../controllers/AuthController";
 const authController = new AuthController();
 
-const itemsController = new ItemsController();
-
 export function registerRoutes(fastify: FastifyInstance) {
-
-    fastify.get('/', (req: any, res: any) => {
-        itemsController.index(req, res)
-    });
-
-    fastify.get("/", (req: any, res: any) => {
-        itemsController.index(req, res);
-    });
-
-    fastify.post("/hms/statistics", (req: any, res: any) => {
-        itemsController.recording_statistics(req, res);
-    });
-
-    // ИМИТАЦИЯ POST-запроса С ARDUINO
-    fastify.get("/hms", (req: any, res: any) => {
-        itemsController.hms(req, res);
-    });
-
-
 
     fastify.get("/account", (req: any, res: any) => {
         authController.account(req, res);

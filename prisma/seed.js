@@ -2,11 +2,11 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function patients() {
-    const createMany = await prisma.patients.createMany({
+    const createMany = await prisma.users.createMany({
         data: [
             {
-                surname: "Петров",
-                name: "Иван"
+                username: "Петров",
+                password: "Иван"
             },
         ],
         skipDuplicates: true

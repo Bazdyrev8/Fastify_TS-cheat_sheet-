@@ -1,0 +1,76 @@
+/* Основа */
+body, p{
+  background-color: rgb(245,245,245);
+  margin: 0px;
+  /* font-family: 'Gill Sans', sans-serif; */
+}
+
+.span-logo__name{
+  display: block;
+  font-family: 'Gill Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.img-menu__icon{
+  padding-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Шапка Меню Навигация */
+
+/* Лого */
+.logo, .wrapper{
+  padding-left: 100px;
+  padding-right: 150px;
+  width: 100%;
+}
+
+.logo{
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+/* Меню */
+
+.wrapper{
+  display: flex;
+  gap: 100px;
+}
+
+.menu{
+  padding-bottom: 10px;
+  width: 195px;
+  border-width: 2px 0 2px 0;
+  border-style: solid;
+  border-color: rgb(225,225,225);
+}
+
+div.link-menu__wrapper{
+  display: block;
+  padding: 5px;  
+  margin-top: 10px;
+}
+
+a.link-menu{
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+
+/* MAIN */
+
+.main{
+  width: 60%;
+  background-color: rgb(255,255,255);
+  border: 2px solid rgb(225,225,225);
+  border-radius: 8px;
+}
+
+h1{
+  font-size: 50px;
+  font-weight:lighter;
+  margin: 0px;
+}

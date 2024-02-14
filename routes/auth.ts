@@ -1,35 +1,61 @@
-// import fastify, { FastifyInstance } from "fastify";
-// import { AuthController } from "../controllers/AuthController";
-// import { request } from "https";
-// import { Interface } from "readline";
+import fastify, { FastifyInstance } from "fastify";
+import { request } from "https";
+import { Interface } from "readline";
 
-// const authController = new AuthController();
+import { AuthController } from "../controllers/AuthController";
+import { copyFileSync } from "fs";
 
-// export function registerRoutes(fastify: FastifyInstance) {
+const authController = new AuthController();
 
-//     fastify.get("/account", (req: any, res: any) => {
-//         authController.account(req, res);
-//     });
+export function registerRoutesAuth(fastify: FastifyInstance) {
 
-//     fastify.get("/logIN", (req: any, res: any) => {
-//         authController.logIN(req, res);
-//     });
+    fastify.get("/account", (req: any, res: any) => {
+        authController.account(req, res, fastify);
+    });
+
+    fastify.get("/login", (req: any, res: any) => {
+        authController.login(req, res, );
+    });
+
+    fastify.get("/signup", (req: any, res: any) => {
+        authController.signup(req, res);
+    });
 
 
-//     // Регистрация
+    fastify.post("/auth", (req: any, res: any) => {
+        authController.auth(req, res, fastify);
+    });
 
-//     fastify.get("/register", (req: any, res: any) => {
-//         authController.register(req, res);
-//     });
+    fastify.post("/register", (req: any, res: any) => {
+        authController.register(req, res, fastify);
+    });
 
-//     fastify.post("/auth", (req: any, res: any) => {
-//         authController.auth(req, res);
-//     });
 
-//     // Здесь регистрация для ГлавВРАЧА и ОБЫЧНОГО
+    // Здесь регистрация для ГлавВРАЧА и ОБЫЧНОГО
 
-//     fastify.post("/registration", (req: any, res: any) => {
-//         authController.registration(req, res);
-//     });
+    fastify.post("/registration", (req: any, res: any) => {
+        authController.registration(req, res);
+    });
 
-// }
+
+    fastify.get('/signUP', (req, res) => {
+        const token = fastify.jwt.sign({ "username": "token" });
+        const decodetoken = fastify.jwt.decode(token);
+        console.log("==============");
+        console.log(token);
+        console.log(decodetoken);
+        res.setCookie('token', token, {
+                path: '/',
+                httpOnly: false,
+                maxAge: 30,
+                secure: false,
+        }).redirect('/');  
+    });
+
+    // fastify.get("/protected", { onRequest: [fastify.authenticate] }, async (req, res) => {
+    //         console.log("=---");
+    //         res.redirect('/')
+    //     }
+    // )
+    
+}

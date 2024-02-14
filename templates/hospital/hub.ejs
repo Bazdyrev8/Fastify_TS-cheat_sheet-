@@ -1,0 +1,51 @@
+<%- include('../particles/header.ejs') %>
+<%- include('../particles/navigation.ejs') %>
+<div class="main">
+    <h1>Ваши устройства</h1>
+    <div>
+        <p>HUB 1</p>
+    </div>
+    <button id="open_button">Добавить устройства</button>
+    <div id="open_form">
+        <form  action="/create_hub" method="post">
+            <div>
+                <label for="serial">
+                </label>
+                <input type="text" id="serial" name="serial" required autocomplete="off" placeholder="Серийный номер устройства" />
+            </div>
+            <div>
+                <label for="device_name">
+                </label>
+                <input type="text" id="device_name" name="device_name" required autocomplete="off" placeholder="Название устройства" />
+            </div>
+            <div>
+                <label for="hospital_name">
+                </label>
+                <input type="text" id="hospital_name" name="hospital_name" required autocomplete="off" placeholder="Название больницы" />
+            </div>
+
+            <button type="submit" value="auth">Добавить</button>
+        </form>
+    </div>
+    <style>
+    #open_form{
+        display: none;
+    }
+    #open_form.open{
+        display: block;
+    }
+    #open_button.close{
+        display: none;
+    }
+    </style>
+    <script>
+        const button = document.querySelector('#open_button');
+        const form = document.querySelector('#open_form');
+
+        button.addEventListener('click', () => {
+            form.classList.add('open');
+            button.classList.add('close');
+        });
+    </script>
+
+<%- include('../particles/footer.ejs') %>

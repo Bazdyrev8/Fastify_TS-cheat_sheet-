@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "kill": "sudo fuser -k 8320/tcp & sudo fuser -k 8320/tcp & sudo fuser -k 8320/tcp",
     "build": "tsc -p tsconfig.json",
-    "dev": " nodemon -q dist/index.js"
+    "dev": "sudo fuser -k 8320/tcp & tsc -p tsconfig.json & nodemon -q dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "@fastify/cookie": "^9.3.0",
     "@fastify/env": "^4.3.0",
     "@fastify/formbody": "^7.4.0",
+    "@fastify/jwt": "^8.0.0",
     "@fastify/session": "^10.7.0",
     "@fastify/static": "^6.12.0",
     "@fastify/view": "^8.2.0",
@@ -23,6 +25,7 @@
     "caniuse-lite": "^1.0.30001554",
     "ejs": "^3.1.9",
     "fastify": "^4.25.2",
+    "fastify-jwt": "^4.2.0",
     "git": "^0.1.5",
     "nodemon": "^3.0.3",
     "point-of-view": "^5.3.0",

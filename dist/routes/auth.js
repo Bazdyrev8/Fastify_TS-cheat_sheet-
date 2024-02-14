@@ -1,25 +1,45 @@
 "use strict";
-// import fastify, { FastifyInstance } from "fastify";
-// import { AuthController } from "../controllers/AuthController";
-// import { request } from "https";
-// import { Interface } from "readline";
-// const authController = new AuthController();
-// export function registerRoutes(fastify: FastifyInstance) {
-//     fastify.get("/account", (req: any, res: any) => {
-//         authController.account(req, res);
-//     });
-//     fastify.get("/logIN", (req: any, res: any) => {
-//         authController.logIN(req, res);
-//     });
-//     // Регистрация
-//     fastify.get("/register", (req: any, res: any) => {
-//         authController.register(req, res);
-//     });
-//     fastify.post("/auth", (req: any, res: any) => {
-//         authController.auth(req, res);
-//     });
-//     // Здесь регистрация для ГлавВРАЧА и ОБЫЧНОГО
-//     fastify.post("/registration", (req: any, res: any) => {
-//         authController.registration(req, res);
-//     });
-// }
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.registerRoutesAuth = void 0;
+const AuthController_1 = require("../controllers/AuthController");
+const authController = new AuthController_1.AuthController();
+function registerRoutesAuth(fastify) {
+    fastify.get("/account", (req, res) => {
+        authController.account(req, res, fastify);
+    });
+    fastify.get("/login", (req, res) => {
+        authController.login(req, res);
+    });
+    fastify.get("/signup", (req, res) => {
+        authController.signup(req, res);
+    });
+    fastify.post("/auth", (req, res) => {
+        authController.auth(req, res, fastify);
+    });
+    fastify.post("/register", (req, res) => {
+        authController.register(req, res, fastify);
+    });
+    // Здесь регистрация для ГлавВРАЧА и ОБЫЧНОГО
+    fastify.post("/registration", (req, res) => {
+        authController.registration(req, res);
+    });
+    fastify.get('/signUP', (req, res) => {
+        const token = fastify.jwt.sign({ "username": "token" });
+        const decodetoken = fastify.jwt.decode(token);
+        console.log("==============");
+        console.log(token);
+        console.log(decodetoken);
+        res.setCookie('token', token, {
+            path: '/',
+            httpOnly: false,
+            maxAge: 30,
+            secure: false,
+        }).redirect('/');
+    });
+    // fastify.get("/protected", { onRequest: [fastify.authenticate] }, async (req, res) => {
+    //         console.log("=---");
+    //         res.redirect('/')
+    //     }
+    // )
+}
+exports.registerRoutesAuth = registerRoutesAuth;

@@ -11,36 +11,77 @@ datasource db {
 }
 
 model users {
+  // Инфа
   id       Int                   @id @default(autoincrement())
   username String?               @db.VarChar(255)
-  email    String?               @db.VarChar(255)
   password String?               @db.VarChar(255)
-  device   serialNumber_device[]
+
+  // Роль пользователя (Глав, Врач, user)
+  role     String?               @db.VarChar(2)
+
+  //Связь с главным устройством 
+  hub_device hub_device[]
+  // Связь с передатчиками разрешенные к редактированию
+  transmitter_device transmitter_device[]
+  // связь с пациентами разрешенными к просмотру
   patients users__patients[]
-  type     String?               @db.VarChar(2)
+
+  // device   serialNumber_device[]
 }
 
-model serialNumber_device {
+model hub_device{
+  // Инфа
   id      Int     @id @default(autoincrement())
-  number  String? @db.VarChar(255)
-  users   users?  @relation(fields: [user_id], references: [id])
-  user_id Int?
+  number  String @db.VarChar(32)
+  used String @db.VarChar(8)
+  device_name String? @db.VarChar(255)
+  hospital_name String? @db.VarChar(255)
+
+  // Связь с пользователями
+  users   users?  @relation(fields: [users_id], references: [id])
+  users_id Int?
+}
+
+model transmitter_device{
+  //ИНФА
+  id      Int     @id @default(autoincrement())
+  number  String @db.VarChar(32)
+  used String @db.VarChar(8)
+  device_name String? @db.VarChar(255)
+  // Связь с текущим пациентом
+  patients_id Int
+
+  // patient_id patients[]
+
+  // связь с пользователями, у которых есть доступ
+  users  users?  @relation(fields: [users_id], references: [id])
+  users_id Int?
 }
 
 model patients {
+  // ИНФА
   id         Int                @id @default(autoincrement())
   surname    String             @db.VarChar(32)
   name       String             @db.VarChar(32)
   chamber    String             @db.VarChar(32)
   bed        String             @db.VarChar(32)
+  
+  // Связь с статистикой пульса данного пациента
   statistics statistics_pulse[]
+  // Связь с пользователями у которых есть доступ
   users      users__patients[]
+
+  // device   transmitter_device?  @relation(fields: [device_id], references: [id])
+  // device_id Int?
 }
 
 model statistics_pulse {
+  //Инфа
   id         Int      @id @default(autoincrement())
   pulse      Int?
   time       DateTime @db.DateTime()
+
+  // Связь пациента со статистикой
   patient    patients @relation(fields: [patient_id], references: [id])
   patient_id Int
 }
@@ -53,3 +94,12 @@ model users__patients {
 
   @@id([userId, patientId])
 }
+
+
+
+// model serialNumber_device {
+//   id      Int     @id @default(autoincrement())
+//   number  String? @db.VarChar(255)
+//   users   users?  @relation(fields: [user_id], references: [id])
+//   user_id Int?
+// }

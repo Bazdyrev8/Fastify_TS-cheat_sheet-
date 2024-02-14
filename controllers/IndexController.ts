@@ -3,11 +3,11 @@ import { PrismaClient, } from '@prisma/client';
 
 const prisma: PrismaClient = new PrismaClient();
 
-export class ItemsController {
+export class IndexController {
 
     async index(req: any, res: any) {
-        res.view("/templates/index.ejs", {
-
+        res.view("/templates/index", {
+            
         });
     }            
     
@@ -30,5 +30,4 @@ export class ItemsController {
     async hms(req: any, res: any){
         res.view('hms');
     }
-} 
-
+}

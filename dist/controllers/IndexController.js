@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ItemsController = void 0;
+exports.IndexController = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-class ItemsController {
+class IndexController {
     async index(req, res) {
         res.view("/templates/index", {});
     }
@@ -25,4 +25,4 @@ class ItemsController {
         res.view('hms');
     }
 }
-exports.ItemsController = ItemsController;
+exports.IndexController = IndexController;

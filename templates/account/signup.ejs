@@ -1,0 +1,35 @@
+<%- include('../particles/header.ejs') %>
+<%- include('../particles/navigation.ejs') %>
+<div class="main">
+  <div class="nazvania">
+  <h1>Система мониторинга <span>здоровья пациента</span> </h1>
+  </div>
+  <div>
+    
+      <ul>
+        <li><a href="/login">Вход</a></li>
+        <li><a href="/signup">Регистрация</a></li>
+      </ul>
+
+      <div>
+
+        <form action="/register" method="post">
+          <div>
+            <label for="username">
+            </label>
+            <input type="text" id="username" name="username" required autocomplete="off" placeholder="username" />
+          </div>
+
+          <div>
+            <label for="password">
+            </label>
+            <input type="password" id="password" name="password" required autocomplete="off" placeholder="password" />
+          </div>
+
+          <button type="submit" value="register">Отправить</button>
+        </form>
+        
+      </div>
+  </div>
+
+<%- include('../particles/footer.ejs') %>
